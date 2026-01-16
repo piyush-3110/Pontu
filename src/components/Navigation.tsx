@@ -4,7 +4,7 @@ interface NavigationProps {
 }
 
 export default function Navigation({ currentPage, onNavigate }: NavigationProps) {
-  const links = ['Home', 'Strategy', 'Why Pontu'];
+  const links = ['Home', 'Pontu', 'Strategy', 'Why Pontu'];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#f5f3e8]/80 backdrop-blur-sm">

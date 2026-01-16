@@ -16,18 +16,22 @@ export default function Hero({ onNavigate }: HeroProps) {
         className="relative z-20 max-w-5xl mx-auto px-6 lg:px-12 text-center"
       >
         <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-black leading-tight mt-40 md:mt-0 mb-8">
-        Where innovation, investment, and human potential come together
+          What <span className="text-[#d4af37]">PONTU</span> Stands For
         </h1>
 
-        <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
-          Pontu GmbH is a Berlin-based investment and strategy firm focused on startups, premium services, and unlocking exceptional talent.
+        <p className="text-lg md:text-xl text-gray-700 max-w-4xl mx-auto mb-6 leading-relaxed">
+          In today's fast-paced world, our core values drive everything we do. Each letter in PONTU represents a fundamental principle that guides our approach to innovation, collaboration, and success.
+        </p>
+
+        <p className="text-base md:text-lg text-gray-800 font-medium max-w-3xl mx-auto mb-12">
+          We are happy to bring your company into the new future. Together we aspire, together we achieve success, dreams, happiness, and friendship.
         </p>
 
         <button
-          onClick={() => onNavigate('Strategy')}
+          onClick={() => onNavigate('Pontu')}
           className="inline-block px-8 py-4 bg-[#d4af37] text-black font-medium tracking-wide hover:bg-[#c09d2f] transition-colors duration-300"
         >
-          Explore Our Strategy
+          Explore Pontu
         </button>
       </motion.div>
     </section>

@@ -7,7 +7,7 @@ import networkImg from '../assets/network.jpeg';
 import successImg from '../assets/success.jpeg';
 import uniqueImg from '../assets/unique.jpeg';
 
-const values = [
+const pontuValues = [
   {
     letter: 'P',
     title: 'Passion for Innovation',
@@ -40,7 +40,7 @@ const values = [
   },
 ];
 
-function ValueItem({ value, index }: { value: typeof values[0]; index: number }) {
+function PontuValueItem({ value, index }: { value: typeof pontuValues[0]; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const isEven = index % 2 === 0;
@@ -87,19 +87,36 @@ function ValueItem({ value, index }: { value: typeof values[0]; index: number })
   );
 }
 
-export default function Values() {
+export default function PontuPage() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-32 px-6 lg:px-12 bg-[#ebe9da]">
-      <div className="max-w-7xl mx-auto">
-        <div className="space-y-24 md:space-y-32">
-          {values.map((value, index) => (
-            <ValueItem key={value.letter} value={value} index={index} />
-          ))}
+    <div className="min-h-screen bg-[#f5f3e8]">
+    
+      <section ref={ref} className="py-16 px-6 lg:px-12 bg-[#ebe9da]">
+        <div className="max-w-7xl mx-auto">
+          <div className="space-y-24 md:space-y-32">
+            {pontuValues.map((value, index) => (
+              <PontuValueItem key={value.letter} value={value} index={index} />
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center mt-24 pt-16 border-t border-gray-400/30"
+          >
+            <p className="font-serif text-2xl md:text-3xl text-black mb-4 leading-relaxed">
+              Do what you love ❤️
+            </p>
+            <p className="text-gray-700 text-lg max-w-3xl mx-auto">
+              By intertwining innovation, open-mindedness, collaboration, teamwork, and unique selling propositions—we pave the way for sustained growth and success in an increasingly complex world.
+            </p>
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
