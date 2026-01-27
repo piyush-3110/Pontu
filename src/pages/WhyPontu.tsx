@@ -44,15 +44,34 @@ function WhyPontuIntro() {
 interface TeamMember {
   name: string;
   role?: string;
+  mobile?: string;
+  email?: string;
   linkedin?: string;
 }
 
 const teamMembers: TeamMember[] = [
-  { name: 'Edgar van Velzen' },
-  { name: 'Michiel Schoenmaker' },
-  { name: 'Mark Meißener', role: 'Swan Capital Invest' },
-  { name: 'Hwie Kwee' },
-  { name: 'Ankit, Nitin', role: 'IT, AI, Website, Video & Animation' },
+  {
+    name: 'Hwie kwee',
+    role: 'Geschäftsführer und Gesellschafter',
+    mobile: '00491709005415',
+    email: 'hwiekwee@yahoo.com',
+    linkedin: 'https://www.linkedin.com/in/hwiekwee',
+  },
+  {
+    name: 'Ankit Karn',
+    role: 'Website, AI, IT and Social Media Strategy',
+    linkedin: 'https://www.linkedin.com/in/ankit-karn-158a19162',
+  },
+  {
+    name: 'Nitin Bhagat',
+    role: 'Website, AI, IT and Social Media Strategy',
+    linkedin: 'https://www.linkedin.com/in/nitinbhagat1',
+  },
+  {
+    name: 'Mark Meißener',
+    role: 'Company advisor',
+    linkedin: 'https://www.linkedin.com/in/mark-meissner-50692212',
+  },
 ];
 
 function Team() {
@@ -78,24 +97,36 @@ function Team() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="flex items-baseline gap-4 text-gray-700"
+              className="text-gray-700"
             >
-              <p className="text-xl">
-                <span className="text-black">{member.name}</span>
-                {member.role && (
-                  <span className="text-gray-600 ml-3">— {member.role}</span>
+              <div className="flex items-baseline gap-4">
+                <p className="text-xl">
+                  <span className="text-black">{member.name}</span>
+                  {member.role && (
+                    <span className="text-gray-600 ml-3">— {member.role}</span>
+                  )}
+                </p>
+                {member.linkedin && (
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-[#d4af37] transition-colors"
+                    aria-label={`${member.name} LinkedIn profile`}
+                  >
+                    <Linkedin size={16} />
+                  </a>
                 )}
-              </p>
-              {member.linkedin && (
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-500 hover:text-[#d4af37] transition-colors"
-                  aria-label={`${member.name} LinkedIn profile`}
-                >
-                  <Linkedin size={16} />
-                </a>
+              </div>
+              {(member.mobile || member.email) && (
+                <div className="mt-2 text-sm text-gray-600 ml-0">
+                  {member.mobile && <div>Mobile: {member.mobile}</div>}
+                  {member.email && (
+                    <div>
+                      Email: <a href={`mailto:${member.email}`} className="hover:text-[#d4af37] transition-colors">{member.email}</a>
+                    </div>
+                  )}
+                </div>
               )}
             </motion.div>
           ))}
