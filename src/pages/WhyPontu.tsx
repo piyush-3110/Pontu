@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Linkedin } from 'lucide-react';
+import { Linkedin, Globe } from 'lucide-react';
 
 function WhyPontuIntro() {
   const ref = useRef(null);
@@ -47,6 +47,7 @@ interface TeamMember {
   mobile?: string;
   email?: string;
   linkedin?: string;
+  website?: string;
 }
 
 const teamMembers: TeamMember[] = [
@@ -71,6 +72,7 @@ const teamMembers: TeamMember[] = [
     name: 'Mark Meißener',
     role: 'Company advisor',
     linkedin: 'https://www.linkedin.com/in/mark-meissner-50692212',
+    website: 'https://www.swancapitalinvest.com/',
   },
 ];
 
@@ -90,7 +92,7 @@ function Team() {
           Team
         </h2>
 
-        <div className="space-y-8">
+        <div className="space-y-10">
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.name}
@@ -99,31 +101,66 @@ function Team() {
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="text-gray-700"
             >
-              <div className="flex items-baseline gap-4">
+              <div className="flex items-center gap-4">
                 <p className="text-xl">
                   <span className="text-black">{member.name}</span>
                   {member.role && (
                     <span className="text-gray-600 ml-3">— {member.role}</span>
                   )}
                 </p>
-                {member.linkedin && (
-                  <a
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 hover:text-[#d4af37] transition-colors"
-                    aria-label={`${member.name} LinkedIn profile`}
-                  >
-                    <Linkedin size={16} />
-                  </a>
-                )}
+
+                <div className="flex items-center gap-3">
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-500 hover:text-[#d4af37] transition-colors"
+                      aria-label={`${member.name} LinkedIn`}
+                    >
+                      <Linkedin size={16} />
+                    </a>
+                  )}
+
+                  {member.website && (
+                    <a
+                      href={member.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-500 hover:text-[#d4af37] transition-colors"
+                      aria-label={`${member.name} Website`}
+                    >
+                      <Globe size={16} />
+                    </a>
+                  )}
+                </div>
               </div>
-              {(member.mobile || member.email) && (
-                <div className="mt-2 text-sm text-gray-600 ml-0">
+
+              {(member.mobile || member.email || member.website) && (
+                <div className="mt-2 text-sm text-gray-600">
                   {member.mobile && <div>Mobile: {member.mobile}</div>}
                   {member.email && (
                     <div>
-                      Email: <a href={`mailto:${member.email}`} className="hover:text-[#d4af37] transition-colors">{member.email}</a>
+                      Email:{' '}
+                      <a
+                        href={`mailto:${member.email}`}
+                        className="hover:text-[#d4af37] transition-colors"
+                      >
+                        {member.email}
+                      </a>
+                    </div>
+                  )}
+                  {member.website && (
+                    <div>
+                      Website:{' '}
+                      <a
+                        href={member.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-[#d4af37] transition-colors"
+                      >
+                        {member.website.replace('https://', '')}
+                      </a>
                     </div>
                   )}
                 </div>
