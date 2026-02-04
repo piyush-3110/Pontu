@@ -163,12 +163,74 @@ function FinalStatement() {
   );
 }
 
+function Impressum() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section ref={ref} className="py-24 px-6 lg:px-12 bg-[#ebe9da]">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="max-w-6xl mx-auto"
+      >
+        <h2 className="font-serif text-4xl md:text-5xl text-black mb-12">
+          Impressum
+        </h2>
+
+        <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+          <div>
+            <p className="text-black font-medium mb-2">Inhaltlich verantwortlich für www.pontu.de</p>
+            <p>Sybelstraße 9, 10967 Berlin</p>
+          </div>
+
+          <div className="space-y-1">
+            <p>
+              <span className="text-gray-600">Telefon:</span>{' '}
+              <a href="tel:+491709005415" className="hover:text-[#d4af37] transition-colors">+49 170 9005415</a>
+            </p>
+            <p>
+              <span className="text-gray-600">Email:</span>{' '}
+              <a href="mailto:hwiekwee@pontu.de" className="hover:text-[#d4af37] transition-colors">hwiekwee@pontu.de</a>
+            </p>
+          </div>
+
+          <div>
+            <p><span className="text-gray-600">Geschäftsführer:</span> Hwie Kwee</p>
+          </div>
+
+          <div>
+            <p>Eingetragen im Handelsregister beim Amtsgericht</p>
+            <p>Berlin Charlottenburg</p>
+          </div>
+
+          <div className="pt-4 border-t border-gray-300">
+            <p className="text-black font-medium mb-2">Bankverbindung</p>
+            <p>Bank Sparkasse</p>
+            <p>Pontu GmbH</p>
+            <p>IBAN: DE52100500000190385383</p>
+          </div>
+
+          <div className="pt-4 border-t border-gray-300">
+            <p className="text-black font-medium mb-2">Handelsregister & Steuern</p>
+            <p>HRB165787B</p>
+            <p>Steuernummer: 29/476/30857</p>
+            <p>USt.-ID: DE 299546534</p>
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
 export default function WhyPontuPage() {
   return (
     <div className="min-h-screen bg-[#f5f3e8]">
       <WhyPontuIntro />
       <Team />
       <FinalStatement />
+      <Impressum />
     </div>
   );
 }
